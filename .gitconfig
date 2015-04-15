@@ -36,25 +36,25 @@
  
   # View the SHA, description, date, author and history graph
   # Example:
-  #	* 66a2a64 - comment (20 hours ago) <USER1>
-  #	*   6a7206f - Merge branch 'develop' into very-cool-feature (21 hours ago) <USER2>
-  #	|\  
-  #	| * 1748c5f - comment (21 hours ago) <USER2>
-  #	| * e3a42a1 - comment (21 hours ago) <USER2>
-  #	* 2667f01 - comment (2 days ago) <USER3>
-  #	* 7f5722d - comment (2 days ago) <USER1>
+  # * 66a2a64 - comment (20 hours ago) <USER1>
+  # *   6a7206f - Merge branch 'develop' into very-cool-feature (21 hours ago) <USER2>
+  # |\  
+  # | * 1748c5f - comment (21 hours ago) <USER2>
+  # | * e3a42a1 - comment (21 hours ago) <USER2>
+  # * 2667f01 - comment (2 days ago) <USER3>
+  # * 7f5722d - comment (2 days ago) <USER1>
   # 
   history = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'; 
  
   # View the SHA, description, date, and history graph of my commits
   # Example:
-  #	* 66a2a64 - comment (20 hours ago) <USER1>
-  #	*   6a7206f - Merge branch 'develop' into very-cool-feature (21 hours ago) <USER2>
-  #	|\  
-  #	| * 1748c5f - comment (21 hours ago) <USER2>
-  #	| * e3a42a1 - comment (21 hours ago) <USER2>
-  #	* 2667f01 - comment (2 days ago) <USER3>
-  #	* 7f5722d - comment (2 days ago) <USER1>
+  # * 66a2a64 - comment (20 hours ago) <USER1>
+  # *   6a7206f - Merge branch 'develop' into very-cool-feature (21 hours ago) <USER2>
+  # |\  
+  # | * 1748c5f - comment (21 hours ago) <USER2>
+  # | * e3a42a1 - comment (21 hours ago) <USER2>
+  # * 2667f01 - comment (2 days ago) <USER3>
+  # * 7f5722d - comment (2 days ago) <USER1>
   # 
   mylog =   log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --author="$(git config USER.name)";
  
@@ -81,12 +81,12 @@
   c = commit;  
  
   # Commit all changes
-  ca = !git add . && git add -u && git commit -a;
+  ac = !git add . && git add -u && git commit -a;
   
   # add and commit with message, dont need quotation marks
   # Example:
-  # git cam message without quotes
-  ac = "!f() { git add . && git commit -m \"$(echo $@)\"; }; f";
+  # git acm message without quotes
+  acm = "!f() { git add . && git commit -m \"$(echo $@)\"; }; f";
  
   # mark file as unchanged to prevent commits
   assume = git update-index --assume-unchanged;
@@ -196,6 +196,13 @@
   theirs = "!f() { git checkout --theirs $@ && git add $@; }; f";
  
  
+ 
+ 
+  ##########
+  # Find
+  ##########
+  find = "!f() { git rev-list --all | xargs git grep $1; }; f";
+  
  
   #===========================================
   # I really dont recommend powerful commands with  one letter only
